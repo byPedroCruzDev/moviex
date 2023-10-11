@@ -33,10 +33,5 @@ E.	Ambos os usuários poderão cancelar suas ações clicando e sair nos menus.
 3.	IMPLEMENTAÇÃO  
  
 Será distribuída tarefas a cada integrante do grupo, essas tarefas serão partes do código que deverão ser juntadas em um código que será compartilhado para todos os integrantes do grupo acompanharem o processo e fazer as alterações necessárias e melhorias, foi feito um grupo no WhatsApp para comunicação entre os integrantes. 
- 
- 
-4.	CONSIDERAÇÕES FINAIS  
- 
-Queremos com esse programa implementar a ideia de uma plataforma de 
-streaming que pode ser alterada e otimizada por usuários e utilizada por usuários normais de maneira intuitiva. 
+
  
