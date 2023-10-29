@@ -49,7 +49,21 @@ void mostrarNomesDosFilmes(Filme filmes[10]) {
     }
 }
 
+int eh_admin(usuario u) {   //funcao que retorna se o usuário eh adm
+        return u.adm == 1; 
+    }
+
 int main() {
+
+    typedef struct usuario {
+        int id;
+        char nome[50];
+        char email[50];
+        char senha[20];
+        int adm;
+    } usuario;
+    
+    
     Filme filmes[10];
     inicializarBancoDeDados(filmes);
     
@@ -71,7 +85,8 @@ int main() {
     } else {
         printf("Filme não encontrado.\n");
     }
-
+    
+    
     return 0;
 }
     
