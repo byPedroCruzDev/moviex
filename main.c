@@ -48,22 +48,22 @@ void mostrarNomesDosFilmes(Filme filmes[10]) {
         printf("%d - %s\n", filmes[i].id, filmes[i].titulo);
     }
 }
-
-int eh_admin(usuario u) {   //funcao que retorna se o usuário eh adm
-        return u.adm == 1; 
-    }
-
-int main() {
-
-    typedef struct usuario {
+typedef struct usuario {
         int id;
         char nome[50];
         char email[50];
         char senha[20];
         int adm;
     } usuario;
-    
-    
+
+int eh_admin(usuario u) {   //funcao que retorna se o usuário eh adm
+        return u.adm == 1; 
+    }
+
+int main() {
+    int resultado = eh_admin(u);
+    printf("O usuário é administrador? %d\n", resultado);
+    242628
     Filme filmes[10];
     inicializarBancoDeDados(filmes);
     
