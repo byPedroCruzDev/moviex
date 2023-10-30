@@ -61,16 +61,14 @@ typedef struct Usuario {
 void verificarAdministrador(struct Usuario u) {
     if(u.isAdm){
         printf(" Sim.\n");
-        return;
+    }else{
+        printf(" Nao.\n");
     }
-    
-    printf(" Nao.\n");
-
-
 }
 
 int main() {
     struct Usuario u;
+    u.isAdm = false;
     
     printf("O usuário é administrador?");
     verificarAdministrador(u);
