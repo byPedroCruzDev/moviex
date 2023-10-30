@@ -1,4 +1,4 @@
-# moviex - SI Programação de computadores 
+# si-moviex - Programação de computadores 
 
 1.	 INTRODUÇÃO  
  
