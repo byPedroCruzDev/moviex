@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
+
 
 typedef struct {
     int id;
@@ -48,22 +50,30 @@ void mostrarNomesDosFilmes(Filme filmes[10]) {
         printf("%d - %s\n", filmes[i].id, filmes[i].titulo);
     }
 }
-typedef struct usuario {
+typedef struct Usuario {
         int id;
         char nome[50];
         char email[50];
         char senha[20];
-        int adm;
-    } usuario;
+        bool isAdm;
+} usuario;
 
-int eh_admin(usuario u) {   //funcao que retorna se o usuário eh adm
-        return u.adm == 1; 
+void verificarAdministrador(struct Usuario u) {
+    if(u.isAdm){
+        printf(" Sim.\n");
+        return;
     }
+    
+    printf(" Nao.\n");
+
+
+}
 
 int main() {
-    int resultado = eh_admin(u);
-    printf("O usuário é administrador? %d\n", resultado);
-    242628
+    struct Usuario u;
+    
+    printf("O usuário é administrador?");
+    verificarAdministrador(u);
     Filme filmes[10];
     inicializarBancoDeDados(filmes);
     
@@ -89,4 +99,3 @@ int main() {
     
     return 0;
 }
-    
