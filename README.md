@@ -1,12 +1,12 @@
 # si-moviex - Programação de computadores 
 
-1.	 INTRODUÇÃO  
+1.INTRODUÇÃO  
  
  
 Neste estudo de caso vamos descrever as competências do nosso programa chamado SIMOVIEX que será um aplicativo de streaming, criado com intuito de diferenciar um usuário normal de um administrador, e otimizar a plataforma. 
  
  
-2.	 DESCRIÇÃO DO CASO  
+2.DESCRIÇÃO DO CASO  
  
  
 2.1 O QUE SERÁ ESSE PROGRAMA? 
@@ -30,7 +30,7 @@ E.	Ambos os usuários poderão cancelar suas ações clicando e sair nos menus.
  
  
  
-3.	IMPLEMENTAÇÃO  
+3.IMPLEMENTAÇÃO  
  
 Será distribuída tarefas a cada integrante do grupo, essas tarefas serão partes do código que deverão ser juntadas em um código que será compartilhado para todos os integrantes do grupo acompanharem o processo e fazer as alterações necessárias e melhorias, foi feito um grupo no WhatsApp para comunicação entre os integrantes. 
 
