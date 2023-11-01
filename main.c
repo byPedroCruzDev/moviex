@@ -35,6 +35,7 @@ void inicializarBancoDeDados(Filme filmes[10]) {
     filmes[9] = filme10;
 }
 
+
 Filme* encontrarFilmePorId(Filme filmes[10], int id) {
     for (int i = 0; i < 10; i++) {
         if (filmes[i].id == id) {
@@ -58,6 +59,13 @@ typedef struct Usuario {
         bool isAdm;
 } usuario;
 
+void cadastroUsuario(){
+    printf("Cadastro aqui\n");
+}
+void login(){
+    printf("Login aqui\n");
+}
+
 void verificarAdministrador(struct Usuario u) {
     if(u.isAdm){
         printf(" Sim.\n");
@@ -67,10 +75,23 @@ void verificarAdministrador(struct Usuario u) {
 }
 
 int main() {
+    struct Usuario uLogin, uCadastro;
+    int lc;
+    
+    printf("Realize um login! Caso nao tenha uma conta voce pode se cadastrar!\n");
+    printf("1.Login \n2.Cadastro\n");
+    scanf( "%d", &lc);
+    if(lc == 1){
+        login();
+    }if(lc == 2){
+        cadastroUsuario();
+    }else{
+        printf("Comando invalido!");
+    }
     struct Usuario u;
     u.isAdm = false;
     
-    printf("O usuário é administrador?");
+    printf("\nO usuário é administrador?");
     verificarAdministrador(u);
     Filme filmes[10];
     inicializarBancoDeDados(filmes);
