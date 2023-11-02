@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+#define MAX_USERS 100
 
 typedef struct {
     int id;
@@ -59,8 +60,33 @@ typedef struct Usuario {
         bool isAdm;
 } usuario;
 
+struct Usuario dbUser[MAX_USERS];
+int nUsuario = 0;
+
 void cadastroUsuario(){
-    printf("Cadastro aqui\n");
+    printf("-----Insira sua informacoes-----\n");
+    if(nUsuario < MAX_USERS){
+        struct Usuario novoUsuario;
+        novoUsuario.id = nUsuario + 1;
+        
+        printf("Seu nome: ");
+        scanf("%s", novoUsuario.nome);
+        printf("Seu email: ");
+        scanf("%s", novoUsuario.email);
+        printf("Sua senha: ");
+        scanf("%s", novoUsuario.senha);
+        novoUsuario.isAdm = false;
+        
+        printf("Usuário cadastrado com sucesso!\n");
+        
+        dbUser[nUsuario] = novoUsuario;
+        
+        nUsuario++;
+        
+    }else {
+        printf("Limite de usuários atingido. Não é possível cadastrar mais usuários.\n");
+    }
+    
 }
 void login(){
     printf("Login aqui\n");
@@ -75,22 +101,23 @@ void verificarAdministrador(struct Usuario u) {
 }
 
 int main() {
-    struct Usuario uLogin, uCadastro;
-    int lc;
+    
+    int opcoes, nUsuario = 1; 
     
     printf("Realize um login! Caso nao tenha uma conta voce pode se cadastrar!\n");
     printf("1.Login \n2.Cadastro\n");
-    scanf( "%d", &lc);
-    if(lc == 1){
+    scanf( "%d", &opcoes);
+    if(opcoes == 1){
         login();
-    }if(lc == 2){
-        cadastroUsuario();
+    }if(opcoes == 2){
+        cadastroUsuario(dbUser, nUsuario);
     }else{
         printf("Comando invalido!");
     }
     struct Usuario u;
-    u.isAdm = false;
     
+    if(opcoes == 15)
+    {
     printf("\nO usuário é administrador?");
     verificarAdministrador(u);
     Filme filmes[10];
@@ -113,6 +140,7 @@ int main() {
         printf("Duração: %d minutos\n", filmeEncontrado->duracao);
     } else {
         printf("Filme não encontrado.\n");
+    }
     }
     
     
