@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/dasex/OneDrive/Documents/UEMS- SI/Programação de computadores/moviex",
-      "program": "c:/Users/dasex/OneDrive/Documents/UEMS- SI/Programação de computadores/moviex/build/Debug/outDebug",
+      "cwd": "c:/Users/dasex/OneDrive/Documents/UEMS- SI/Programação de computadores/simoviex",
+      "program": "c:/Users/dasex/OneDrive/Documents/UEMS- SI/Programação de computadores/simoviex/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

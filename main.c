@@ -59,34 +59,79 @@ typedef struct Usuario {
         char senha[20];
         bool isAdm;
 } usuario;
-
 struct Usuario dbUser[MAX_USERS];
-int nUsuario = 0;
+int nUsuarios = 0;
 
-void cadastroUsuario(){
+
+void salvarUsuarios(){
+    FILE *file = fopen("usuarios.txt", "w");
+    //erro aqui
+    if(file == NULL){
+        printf("Erro ao abrir o arquivo para salvar.\n");
+        return;
+    }
+    
+    for (int i = 0; i < nUsuarios; i++) {
+        fprintf(file, "%d,%s,%s,%s,%d\n", dbUser[i].id, dbUser[i].nome, 
+        dbUser[i].email, dbUser[i].senha, dbUser[i].isAdm);
+        printf("aquiii %s", dbUser->nome);
+    }
+    
+    fclose(file);
+}
+
+
+
+void cadastroUsuarios(){
     printf("-----Insira sua informacoes-----\n");
-    if(nUsuario < MAX_USERS){
+    if(nUsuarios < MAX_USERS){
         struct Usuario novoUsuario;
-        novoUsuario.id = nUsuario + 1;
+        novoUsuario.id = nUsuarios + 1;
         
         printf("Seu nome: ");
-        scanf("%s", novoUsuario.nome);
+        setbuf(stdin, 0);
+        fgets(novoUsuario.nome, 50, stdin);
         printf("Seu email: ");
-        scanf("%s", novoUsuario.email);
+        setbuf(stdin, 0);
+        fgets(novoUsuario.email, 50, stdin);
         printf("Sua senha: ");
-        scanf("%s", novoUsuario.senha);
+        setbuf(stdin, 0);
+        fgets(novoUsuario.senha, 50, stdin);
         novoUsuario.isAdm = false;
         
-        printf("Usuário cadastrado com sucesso!\n");
+       
         
-        dbUser[nUsuario] = novoUsuario;
+        dbUser[nUsuarios] = novoUsuario;
         
-        nUsuario++;
+
+        
+        salvarUsuarios();
+        
+        printf("Usuario cadastrado com sucesso!\n");
+        
+        
+        nUsuarios++;
         
     }else {
         printf("Limite de usuários atingido. Não é possível cadastrar mais usuários.\n");
     }
+
     
+}
+void carregarUsuarios() {
+    FILE *file = fopen("usuarios.txt", "r");
+    if (file == NULL) {
+        printf("Arquivo de usuários não encontrado. Criando um novo...\n");
+        return;
+    }
+
+    while (fscanf(file, "%d,%49[^,],%49[^,],%19[^,],%d\n", &dbUser[nUsuarios].id, 
+    dbUser[nUsuarios].nome, dbUser[nUsuarios].email, 
+    dbUser[nUsuarios].senha, &dbUser[nUsuarios].isAdm) == 5) {
+        nUsuarios++;
+    }
+
+    fclose(file);
 }
 void login(){
     printf("Login aqui\n");
@@ -104,13 +149,19 @@ int main() {
     
     int opcoes, nUsuario = 1; 
     
+    printf("Bem-vindo ao sistema de filmes e usuarios!\n");
+    
+    carregarUsuarios();
+    
     printf("Realize um login! Caso nao tenha uma conta voce pode se cadastrar!\n");
-    printf("1.Login \n2.Cadastro\n");
+    printf("1.Login \n2.Cadastro\n3.Listar ususarios\n");
     scanf( "%d", &opcoes);
     if(opcoes == 1){
         login();
     }if(opcoes == 2){
-        cadastroUsuario(dbUser, nUsuario);
+        cadastroUsuarios();
+    }if(opcoes = 3){
+        carregarUsuarios();
     }else{
         printf("Comando invalido!");
     }
