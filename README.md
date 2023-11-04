@@ -1,19 +1,19 @@
 # si-moviex - Programação de computadores 
 
-1.INTRODUÇÃO  
+### INTRODUÇÃO  
  
  
 Neste estudo de caso vamos descrever as competências do nosso programa chamado SIMOVIEX que será um aplicativo de streaming, criado com intuito de diferenciar um usuário normal de um administrador, e otimizar a plataforma. 
  
  
-2.DESCRIÇÃO DO CASO  
+### DESCRIÇÃO DO CASO  
  
  
 2.1 O QUE SERÁ ESSE PROGRAMA? 
  
 Este programa será um catálogo de filmes online onde o usuário normal poderá acessar e escolher qual dos filmes do catálogo quer assistir, o usuário administrador poderá fazer o mesmo que o usuário normal e terá o privilégio de cadastrar filmes caso não conter no catálogo. 
  
-2.2 O QUE O PROGRAMA DEVERÁ ENTREGAR? 
+### O QUE O PROGRAMA DEVERÁ ENTREGAR ? 
  
 A.	O programa deverá receber e verificar se o login do usuário é administrador ou normal, e mostrar ao usuário qual é o tipo do seu login. 
  
@@ -30,7 +30,7 @@ E.	Ambos os usuários poderão cancelar suas ações clicando e sair nos menus.
  
  
  
-3.IMPLEMENTAÇÃO  
+### IMPLEMENTAÇÃO  
  
 Será distribuída tarefas a cada integrante do grupo, essas tarefas serão partes do código que deverão ser juntadas em um código que será compartilhado para todos os integrantes do grupo acompanharem o processo e fazer as alterações necessárias e melhorias, foi feito um grupo no WhatsApp para comunicação entre os integrantes. 
 
