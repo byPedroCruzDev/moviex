@@ -65,7 +65,7 @@ int nUsuarios = 0;
 
 void salvarUsuarios(){
     FILE *file = fopen("usuarios.txt", "w");
-    //erro aqui
+    
     if(file == NULL){
         printf("Erro ao abrir o arquivo para salvar.\n");
         return;
@@ -74,7 +74,6 @@ void salvarUsuarios(){
     for (int i = 0; i < nUsuarios; i++) {
         fprintf(file, "%d,%s,%s,%s,%d\n", dbUser[i].id, dbUser[i].nome, 
         dbUser[i].email, dbUser[i].senha, dbUser[i].isAdm);
-        printf("aquiii %s", dbUser->nome);
     }
     
     fclose(file);
@@ -104,13 +103,13 @@ void cadastroUsuarios(){
         dbUser[nUsuarios] = novoUsuario;
         
 
-        
+        nUsuarios++;
         salvarUsuarios();
         
         printf("Usuario cadastrado com sucesso!\n");
         
         
-        nUsuarios++;
+        
         
     }else {
         printf("Limite de usuários atingido. Não é possível cadastrar mais usuários.\n");
