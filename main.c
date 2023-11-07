@@ -129,71 +129,22 @@ void carregarUsuarios() {
     dbUser[nUsuarios].senha, &dbUser[nUsuarios].isAdm) == 5) {
         nUsuarios++;
     }
+  
 
     fclose(file);
 }
-int login(struct Usuario usuarioLogado) {
-    char email[50], senha[50];
+void listarFilmes(char *nome){
+    printf("-----------------\n");
+    printf("Seja bem vindo %s", nome);
 
-    printf("\nDigite seu Email: ");
-    setbuf(stdin, 0);
-    fgets(email, 50, stdin);
 
-    printf("\nDigite sua senha: ");
-    setbuf(stdin, 0);
-    fgets(senha, 50, stdin);
-
-    for (int i = 0; i < nUsuarios; i++) {
-        if (strcmp(dbUser[i].email, email) == 0 && strcmp(dbUser[i].senha, senha) == 0) {
-            printf("Login bem sucedido!!");
-            if (dbUser[i].isAdm == 0)
-            {
-                printf("mostrar filmes");
-            }else{
-                printf("mostrar opcoes de adm");
-            }
-            
-            return dbUser[i].id;
-        }else{
-            printf("Login falhou, verifique email e senha!!");
-        }
-    }
-    return -1;
-}
-
-int main() {
-    
-    int opcoes, nUsuario = 1; 
-    struct Usuario usuarioLogado;
-    
-    printf("Bem-vindo ao sistema de filmes e usuarios!\n");
-    
-    carregarUsuarios();
-    
-    printf("Realize um login! Caso nao tenha uma conta voce pode se cadastrar!\n");
-    printf("1.Login \n2.Cadastro\n3.Listar ususarios\n");
-    scanf( "%d", &opcoes);
-    if(opcoes == 1){
-        login(usuarioLogado);
-    }if(opcoes == 2){
-        cadastroUsuarios();
-    }if(opcoes = 3){
-        carregarUsuarios();
-    }else{
-        printf("Comando invalido!");
-    }
-    struct Usuario u;
-    
-    if(opcoes == 15)
-    {
-  
     Filme filmes[10];
     inicializarBancoDeDados(filmes);
     
     mostrarNomesDosFilmes(filmes);
 
     int idDesejado;
-    printf("Digite o ID do filme desejado: ");
+    printf("Digite o ID do filme desejado ou 0 para sair: ");
     scanf("%d", &idDesejado);
 
     Filme* filmeEncontrado = encontrarFilmePorId(filmes, idDesejado);
@@ -205,11 +156,73 @@ int main() {
         printf("Gênero: %s\n", filmeEncontrado->genero);
         printf("Descrição: %s\n", filmeEncontrado->descricao);
         printf("Duração: %d minutos\n", filmeEncontrado->duracao);
-    } else {
+    }
+    if(idDesejado == 0){
+        printf("voltando para o menu inicial...\n");
+        return ;
+    }else {
         printf("Filme não encontrado.\n");
+        listarFilmes(nome);
     }
+}
+int login() {
+    char email[50], senha[50];
+
+    printf("\nDigite seu Email: ");
+    setbuf(stdin, 0);
+    fgets(email, 50, stdin);
+
+    printf("\nDigite sua senha: ");
+    setbuf(stdin, 0);
+    fgets(senha, 50, stdin);
+   
+    for (int i = 0; i < nUsuarios; i++) {
+        if (strcmp(dbUser[i].email, email) == 0 && strcmp(dbUser[i].senha, senha) == 0) {
+            
+            printf("Login bem sucedido!!\n");
+            if (dbUser[i].isAdm == false)
+            {
+                listarFilmes(dbUser[i].nome);
+            }else{
+                printf("mostrar opcoes de adm");
+            }
+            
+            return dbUser[i].id;
+        }else{
+            printf("Login falhou, verifique email e senha!!");
+            return 0;
+        }
     }
+    return -1;
+}
+
+int main() {
+    int opcoes;
+    int usuarioLogado;
+    carregarUsuarios();
     
+    while (1) {
+        printf("Realize um login! Caso não tenha uma conta você pode se cadastrar!\n");
+        printf("1. Login\n2. Cadastro\n3. Sair\n");
+        scanf("%d", &opcoes);
+
+        switch (opcoes) {
+            case 1:
+                usuarioLogado = login();
+                if (usuarioLogado != -1) {
+                    printf("Escolha inválida. Tente novamente.\n");
+                }
+                break;
+            case 2:
+                cadastroUsuarios();
+                break;
+            case 3:
+                printf("Saindo...\n");
+                return 0;
+            default:
+                printf("Escolha inválida. Tente novamente.\n");
+        }
+    }
     
     return 0;
 }

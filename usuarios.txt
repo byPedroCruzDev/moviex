@@ -1,4 +1,12 @@
-1,Pedro
-,pedro@email.com
-,1234
+1,pedro
+,pp
+,12
+,0
+2,foda
+,ff
+,123
+,0
+3,pp
+,x
+,1
 ,0
