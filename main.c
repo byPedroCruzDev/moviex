@@ -132,21 +132,39 @@ void carregarUsuarios() {
 
     fclose(file);
 }
-void login(){
-    printf("Login aqui\n");
-}
+int login(struct Usuario usuarioLogado) {
+    char email[50], senha[50];
 
-void verificarAdministrador(struct Usuario u) {
-    if(u.isAdm){
-        printf(" Sim.\n");
-    }else{
-        printf(" Nao.\n");
+    printf("\nDigite seu Email: ");
+    setbuf(stdin, 0);
+    fgets(email, 50, stdin);
+
+    printf("\nDigite sua senha: ");
+    setbuf(stdin, 0);
+    fgets(senha, 50, stdin);
+
+    for (int i = 0; i < nUsuarios; i++) {
+        if (strcmp(dbUser[i].email, email) == 0 && strcmp(dbUser[i].senha, senha) == 0) {
+            printf("Login bem sucedido!!");
+            if (dbUser[i].isAdm == 0)
+            {
+                printf("mostrar filmes");
+            }else{
+                printf("mostrar opcoes de adm");
+            }
+            
+            return dbUser[i].id;
+        }else{
+            printf("Login falhou, verifique email e senha!!");
+        }
     }
+    return -1;
 }
 
 int main() {
     
     int opcoes, nUsuario = 1; 
+    struct Usuario usuarioLogado;
     
     printf("Bem-vindo ao sistema de filmes e usuarios!\n");
     
@@ -156,7 +174,7 @@ int main() {
     printf("1.Login \n2.Cadastro\n3.Listar ususarios\n");
     scanf( "%d", &opcoes);
     if(opcoes == 1){
-        login();
+        login(usuarioLogado);
     }if(opcoes == 2){
         cadastroUsuarios();
     }if(opcoes = 3){
@@ -168,8 +186,7 @@ int main() {
     
     if(opcoes == 15)
     {
-    printf("\nO usuário é administrador?");
-    verificarAdministrador(u);
+  
     Filme filmes[10];
     inicializarBancoDeDados(filmes);
     
