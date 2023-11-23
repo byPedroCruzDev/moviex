@@ -133,6 +133,21 @@ void carregarUsuarios() {
 
     fclose(file);
 }
+void visualizarListaUsuarios() {
+  
+    carregarUsuarios();
+
+    printf("\nLista de Usuários:\n");
+
+    for (int i = 0; i < nUsuarios; i++) {
+        printf("ID: %d\n", dbUser[i].id);
+        printf("Nome: %s", dbUser[i].nome);
+        printf("Email: %s", dbUser[i].email);
+        printf("Administrador: %s\n", dbUser[i].isAdm ? "Sim" : "Não");
+        printf("------------------------\n");
+    }
+}
+
 void listarFilmes(char *nome){
     printf("-----------------\n");
     printf("Seja bem vindo %s", nome);
@@ -165,6 +180,9 @@ void listarFilmes(char *nome){
         listarFilmes(nome);
     }
 }
+void adicionarFilme() {
+    printf("Hello");
+}
 int login() {
     char email[50], senha[50];
 
@@ -184,7 +202,28 @@ int login() {
             {
                 listarFilmes(dbUser[i].nome);
             }else{
-                printf("mostrar opcoes de adm");
+                printf("Opções de administrador:\n");
+                printf("1. Adicionar Filme\n");
+                printf("2. Remover Filme\n");
+                printf("3. Visualizar Lista de Usuários\n");
+                int opcaoAdm;
+                printf("Escolha uma opção: ");
+                scanf("%d", &opcaoAdm);
+
+                switch (opcaoAdm) {
+                    case 1:
+                        adicionarFilme();
+                        break;
+                    case 2:
+                        // Implemente a remoção de filme
+                        break;
+                    case 3:
+                        visualizarListaUsuarios();
+                        break;
+                    default:
+                        printf("Opção inválida.\n");
+                        break;
+                }
             }
             
             return dbUser[i].id;
@@ -195,6 +234,7 @@ int login() {
     }
     return -1;
 }
+
 
 int main() {
     int opcoes;
