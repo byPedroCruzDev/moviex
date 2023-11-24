@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <locale.h>
 
 #define MAX_USERS 100
 
@@ -133,12 +134,17 @@ void carregarUsuarios() {
 
     fclose(file);
 }
-void visualizarListaUsuarios() {
+void adicionarFilme() {
+    printf("Hello");
+}
+void removerFilmes(){
+    printf("not to hellou");
+}
+int visualizarListaUsuarios() {
   
-    carregarUsuarios();
 
-    printf("\nLista de Usuários:\n");
-
+    printf("\nLista de Usuarios:\n");
+  
     for (int i = 0; i < nUsuarios; i++) {
         printf("ID: %d\n", dbUser[i].id);
         printf("Nome: %s", dbUser[i].nome);
@@ -146,7 +152,24 @@ void visualizarListaUsuarios() {
         printf("Administrador: %s\n", dbUser[i].isAdm ? "Sim" : "Não");
         printf("------------------------\n");
     }
+
+    printf("Opções de administrador:\n");
+    printf("1. Adicionar Filme\n");
+    printf("2. Remover Filme\n");
+    int opcaoAdm;
+    printf("Escolha uma opção: ");
+    scanf("%d", &opcaoAdm);
+
+    switch (opcaoAdm) {
+        case 1:
+            adicionarFilme();
+            break;
+        case 2:
+            removerFilmes();
+            break;
+    }
 }
+
 
 void listarFilmes(char *nome){
     printf("-----------------\n");
@@ -180,9 +203,7 @@ void listarFilmes(char *nome){
         listarFilmes(nome);
     }
 }
-void adicionarFilme() {
-    printf("Hello");
-}
+
 int login() {
     char email[50], senha[50];
 
@@ -239,6 +260,7 @@ int login() {
 int main() {
     int opcoes;
     int usuarioLogado;
+    setlocale(LC_ALL, "Portuguese");
     carregarUsuarios();
     
     while (1) {
