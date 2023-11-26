@@ -1,12 +1,8 @@
 1,pedro
 ,pedro@email
-,123
+,1234
 ,1
 2,jao
-,jaojao
-,12
-,0
-3,bdchrvhc
-,pedro
-,12
+,jao@email
+,1234
 ,0

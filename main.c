@@ -62,7 +62,9 @@ typedef struct Usuario {
 } usuario;
 struct Usuario dbUser[MAX_USERS];
 int nUsuarios = 0;
-
+int visualizarListaUsuarios();
+void removerFilmes();
+void listarFilmes();
 
 void salvarUsuarios(){
     FILE *file = fopen("usuarios.txt", "w");
@@ -135,7 +137,30 @@ void carregarUsuarios() {
     fclose(file);
 }
 void adicionarFilme() {
-    printf("Hello");
+    printf("Adicionar filmes aqui\n");
+    printf("Opções de administrador:\n");
+    printf("1. Listar Filmes\n");
+    printf("2. Remover Filmes\n");
+    printf("3. Listar usuarios\n");
+    printf("4. para sair\n");
+    int opcaoAdm;
+    printf("Escolha uma opção: ");
+    scanf("%d", &opcaoAdm);
+
+    switch (opcaoAdm) {
+        case 1:
+            listarFilmes();
+            break;
+        case 2:
+            removerFilmes();
+            break;
+        case 3:
+            visualizarListaUsuarios();
+            break;
+        case 4:
+            printf("Saindo...\n");
+            return ;    
+    }
 }
 void removerFilmes(){
     printf("not to hellou");
@@ -171,10 +196,7 @@ int visualizarListaUsuarios() {
 }
 
 
-void listarFilmes(char *nome){
-    printf("-----------------\n");
-    printf("Seja bem vindo %s", nome);
-
+void listarFilmes(){
 
     Filme filmes[10];
     inicializarBancoDeDados(filmes);
@@ -200,7 +222,20 @@ void listarFilmes(char *nome){
         return ;
     }else {
         printf("Filme não encontrado.\n");
-        listarFilmes(nome);
+
+        int opt ;
+
+        printf("1. Listar filmes novamente\n");
+        printf("2. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opt);
+        switch (idDesejado) {
+            case 1:
+                listarFilmes();         
+                break;
+            case 2:
+                return ;
+        }
     }
 }
 
@@ -221,12 +256,16 @@ int login() {
             printf("Login bem sucedido!!\n");
             if (dbUser[i].isAdm == false)
             {
+                printf("-----------------\n");
+                printf("Seja bem vindo %s", dbUser[i].nome);
                 listarFilmes(dbUser[i].nome);
             }else{
                 printf("Opções de administrador:\n");
                 printf("1. Adicionar Filme\n");
-                printf("2. Remover Filme\n");
-                printf("3. Visualizar Lista de Usuários\n");
+                printf("2. Listar Filmes\n");
+                printf("3. Remover filme\n");
+                printf("4. Visualizar Lista de Usuários\n");
+                
                 int opcaoAdm;
                 printf("Escolha uma opção: ");
                 scanf("%d", &opcaoAdm);
@@ -236,9 +275,12 @@ int login() {
                         adicionarFilme();
                         break;
                     case 2:
-                        // Implemente a remoção de filme
+                        listarFilmes();
                         break;
                     case 3:
+                        removerFilmes();
+                        break;
+                    case 4:
                         visualizarListaUsuarios();
                         break;
                     default:
@@ -266,6 +308,7 @@ int main() {
     while (1) {
         printf("Realize um login! Caso não tenha uma conta você pode se cadastrar!\n");
         printf("1. Login\n2. Cadastro\n3. Sair\n");
+        printf("Escolha uma opção: ");
         scanf("%d", &opcoes);
 
         switch (opcoes) {
