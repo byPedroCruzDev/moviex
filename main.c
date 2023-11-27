@@ -62,7 +62,7 @@ typedef struct Usuario {
 } usuario;
 struct Usuario dbUser[MAX_USERS];
 int nUsuarios = 0;
-int visualizarListaUsuarios();
+void visualizarListaUsuarios();
 void removerFilmes();
 void listarFilmes();
 
@@ -138,6 +138,10 @@ void carregarUsuarios() {
 }
 void adicionarFilme() {
     printf("Adicionar filmes aqui\n");
+
+
+
+
     printf("Opções de administrador:\n");
     printf("1. Listar Filmes\n");
     printf("2. Remover Filmes\n");
@@ -163,9 +167,9 @@ void adicionarFilme() {
     }
 }
 void removerFilmes(){
-    printf("not to hellou");
+    printf("Remover filmes aqui");
 }
-int visualizarListaUsuarios() {
+void visualizarListaUsuarios() {
   
 
     printf("\nLista de Usuarios:\n");
@@ -179,19 +183,27 @@ int visualizarListaUsuarios() {
     }
 
     printf("Opções de administrador:\n");
-    printf("1. Adicionar Filme\n");
-    printf("2. Remover Filme\n");
+    printf("1. Listar Filmes\n");
+    printf("2. Adicionar Filme\n");
+    printf("3. Remover Filme\n");
+    printf("4. Sair\n");
     int opcaoAdm;
     printf("Escolha uma opção: ");
     scanf("%d", &opcaoAdm);
 
     switch (opcaoAdm) {
         case 1:
-            adicionarFilme();
+            listarFilmes();
             break;
         case 2:
+            adicionarFilme();
+            break;
+        case 3:
             removerFilmes();
             break;
+        case 4:
+            printf("Saindo...\n");
+            return ;
     }
 }
 
